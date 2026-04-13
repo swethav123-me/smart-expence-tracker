@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- App Information -->
+    <title>Smart Expense Tracker</title>
+    <meta name="description" content="Track your expenses with AI-powered voice input. Manage budgets, analyze spending patterns, and achieve financial goals." />
+    <meta name="keywords" content="expense tracker, budget, finance, money management, voice input" />
+    <meta name="author" content="Your Company" />
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#0066cc" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a1a" media="(prefers-color-scheme: dark)" />
+    
+    <!-- PWA Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Expense Tracker" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    
+    <!-- iOS Icons -->
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="apple-touch-startup-image" href="/icon-192.png" />
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" sizes="any" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Smart Expense Tracker" />
+    <meta property="og:description" content="Track your expenses with AI-powered voice input" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Smart Expense Tracker" />
+    <meta name="twitter:description" content="Track your expenses with AI-powered voice input" />
+  </head>
+  <body class="bg-light dark:bg-dark text-dark dark:text-light">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registered successfully:', registration)
+              
+              // Check for updates periodically
+              setInterval(() => {
+                registration.update()
+              }, 60000) // Check every minute
+            })
+            .catch((error) => {
+              console.log('Service Worker registration failed:', error)
+            })
+          
+          // Handle new service worker installation
+          navigator.serviceWorker.addEventListener('controllerchange', () => {
+            console.log('Service Worker controller changed')
+            // Optionally show update notification
+          })
+        })
+      }
+    </script>
+  </body>
+</html>
