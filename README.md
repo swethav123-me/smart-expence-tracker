@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Smart Expense Tracker
 
 A modern, full-stack expense tracking application with voice entry, AI auto-categorization, and multi-user support.
@@ -151,3 +152,7 @@ Frontend runs at: `http://localhost:5173`
 ## Version
 
 1.0.0 - Complete feature set with authentication, multi-user support, voice entry, and analytics
+=======
+# smart-expence-tracker
+Smart Expense Tracker with voice entry – A full-stack web application to record, manage, and analyze daily expenses with budgeting insights.The specical feature is voice entry to easyly add the expencess throungh the voice.
+>>>>>>> 6f37aa7f0b64705b86b1c662c0860d0a8954b9d4
