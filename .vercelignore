@@ -4,11 +4,6 @@ node_modules
 .env.local
 backend
 app
-components
-constants
-hooks
-scripts
-assets
 .expo
 .vscode
 *.md
