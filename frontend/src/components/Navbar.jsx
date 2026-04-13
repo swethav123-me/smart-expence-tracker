@@ -21,30 +21,31 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow border-b border-gray-200 dark:border-gray-700 px-6 py-4">
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-lg font-semibold text-dark dark:text-light">Welcome, {user?.name}</h2>
+    <nav className="bg-white dark:bg-gray-800 shadow border-b border-gray-200 dark:border-gray-700 px-4 md:px-6 py-4">
+      <div className="flex items-center justify-between gap-4">
+        {/* Welcome section with padding for mobile menu button */}
+        <div className="flex-1 min-w-0 pt-6 md:pt-0 md:flex-none">
+          <h2 className="text-lg font-semibold text-dark dark:text-light truncate">Welcome, {user?.name}</h2>
           <p className="text-sm text-gray-500 dark:text-gray-400">Manage your expenses</p>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
           {/* Notifications */}
           <button className="relative p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-200">
             <Bell size={20} />
             <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
           </button>
 
-          {/* Dark Mode Toggle */}
+          {/* Dark Mode Toggle - hide on very small screens */}
           <button
             onClick={toggleDarkMode}
-            className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-200"
+            className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-200 hidden sm:block"
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
 
-          {/* Settings */}
-          <button className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-200">
+          {/* Settings - hide on very small screens */}
+          <button className="p-2 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition duration-200 hidden sm:block">
             <Settings size={20} />
           </button>
 
