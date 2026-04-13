@@ -1,0 +1,14 @@
+node_modules
+.git
+.env
+.env.local
+backend
+app
+components
+constants
+hooks
+scripts
+assets
+.expo
+.vscode
+*.md
