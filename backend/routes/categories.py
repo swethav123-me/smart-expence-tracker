@@ -111,25 +111,28 @@ def delete_category(category_id):
 @categories_bp.route('/init-defaults', methods=['POST'])
 @jwt_required()
 def init_default_categories():
-    """Initialize default categories for a new user"""
+    """Initialize default categories for a new user or add missing ones"""
     user_id = int(get_jwt_identity())
     
     try:
-        # Check if user already has categories
-        existing = Category.query.filter_by(user_id=user_id).first()
-        if existing:
-            return jsonify({'message': 'User already has categories'}), 400
+        # Get existing categories for this user
+        existing_categories = Category.query.filter_by(user_id=user_id).all()
+        existing_names = {cat.category_name for cat in existing_categories}
         
-        # Create default categories
+        # Add any missing default categories
+        added = False
         for name, cat_type in DEFAULT_CATEGORIES:
-            category = Category(
-                user_id=user_id,
-                category_name=name,
-                category_type=cat_type
-            )
-            db.session.add(category)
+            if name not in existing_names:
+                category = Category(
+                    user_id=user_id,
+                    category_name=name,
+                    category_type=cat_type
+                )
+                db.session.add(category)
+                added = True
         
-        db.session.commit()
+        if added:
+            db.session.commit()
         
         categories = Category.query.filter_by(user_id=user_id).all()
         return jsonify([cat.to_dict() for cat in categories]), 201
