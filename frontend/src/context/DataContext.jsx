@@ -23,6 +23,14 @@ export const DataProvider = ({ children }) => {
       setLoading(true)
       setError(null)
 
+      // First, ensure user has all default categories
+      try {
+        await api.post('/categories/init-defaults')
+      } catch (err) {
+        // Silently ignore if init-defaults fails (user might already have all categories)
+        console.log('Categories already initialized or error during init')
+      }
+
       const [recordsRes, accountsRes, categoriesRes, budgetsRes] = await Promise.all([
         api.get('/records'),
         api.get('/accounts'),
