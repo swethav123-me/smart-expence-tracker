@@ -12,6 +12,7 @@ DEFAULT_CATEGORIES = [
     ('Health', 'expense'),
     ('Education', 'expense'),
     ('Entertainment', 'expense'),
+    ('Office Supplies', 'expense'),
     ('Salary', 'income'),
 ]
 
