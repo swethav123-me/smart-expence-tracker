@@ -28,6 +28,7 @@ const CATEGORY_KEYWORDS = {
   Health: ['doctor', 'medicine', 'pharmacy', 'hospital', 'health', 'dental', 'clinic', 'treatment', 'medical', 'checkup', 'therapy', 'doctor visit'],
   Education: ['school', 'college', 'course', 'tuition', 'books', 'education', 'exam', 'training', 'learning', 'fees', 'institute', 'university'],
   Entertainment: ['movie', 'cinema', 'show', 'game', 'sport', 'music', 'concert', 'ticket', 'fun', 'party', 'entertainment', 'outing', 'movie ticket', 'gaming'],
+  'Office Supplies': ['xerox', 'stationery', 'paper', 'pen', 'pencil', 'notebook', 'office', 'printer', 'ink', 'toner', 'stationary', 'office supplies', 'printing', 'copy', 'photostat'],
 }
 
 // Type keywords with improved detection

@@ -88,17 +88,29 @@ const VoiceEntryModal = ({ onClose }) => {
     setParsed(result)
   }
 
-  const handleConfirm = async () => {
-    if (!parsed || !parsed.amount) {
-      setError('Could not extract amount from speech. Please try again.')
-      return
-    }
+   const handleConfirm = async () => {
+     if (!parsed || !parsed.amount) {
+       setError('Could not extract amount from speech. Please try again.')
+       return
+     }
 
-    setLoading(true)
-    
-    // Find category ID
-    const category = categories.find(c => c.category_name === parsed.category)
-    const categoryId = category ? category.id : null
+     setLoading(true)
+     
+     // Find category ID with flexible matching
+     let category = categories.find(c => c.category_name === parsed.category)
+     
+     // If exact match not found, try case-insensitive match
+     if (!category) {
+       category = categories.find(c => c.category_name?.toLowerCase() === parsed.category?.toLowerCase())
+     }
+     
+     // If still not found, use the first category of the same type
+     if (!category) {
+       const type = parsed.type === 'income' ? 'income' : 'expense'
+       category = categories.find(c => c.category_type === type)
+     }
+     
+     const categoryId = category ? category.id : null
 
     // Use first account by default
     const accountId = accounts[0]?.id
